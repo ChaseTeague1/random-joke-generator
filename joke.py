@@ -1,15 +1,31 @@
 import requests
+import tkinter as tk
 
-url = "https://icanhazdadjoke.com/"
+root = tk.Tk()
+root.geometry('400x400')
 
-headers = {
-    'Accept' : 'application/json'
-}
+#Create function that gets new joke
+def get_new():
+    url = "https://icanhazdadjoke.com/"
 
-response = requests.get(url, headers=headers)
+    headers = {
+        'Accept' : 'application/json'
+    }
 
-if response.status_code == 200:
-    data = response.json()
-    print(f"{data['joke']}")
-else:
-    print("Could not fetch request")
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        data = response.json()
+        joke = data['joke']
+        joke_label.config(text=joke)
+    else:
+        joke_label.config(text="Could not fetch joke")
+
+joke_label = tk.Label(root, text="Click the button to get a joke!", wraplength=300, width=60, height=5, anchor='center')
+joke_label.pack(pady=20)
+
+joke_button = tk.Button(root, text="Get a Joke", command=get_new)
+joke_button.pack(pady=10)
+
+root.title("Random Joke Generator")
+root.mainloop()
