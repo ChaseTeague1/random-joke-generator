@@ -21,10 +21,10 @@ def get_new():
     else:
         joke_label.config(text="Could not fetch joke")
 
-joke_label = tk.Label(root, text="Click the button to get a joke!", wraplength=300, width=60, height=5, anchor='center')
+joke_label = tk.Label(root, font=('consolas', 14, 'bold') , text="Click the button to get a joke!", wraplength=300, width=60, height=5, anchor='center')
 joke_label.pack(pady=20)
 
-joke_button = tk.Button(root, text="Get a Joke", command=get_new)
+joke_button = tk.Button(root, font=('consolas', 12, 'normal'), text="Get a Joke", command=get_new)
 joke_button.pack(pady=10)
 
 root.title("Random Joke Generator")
